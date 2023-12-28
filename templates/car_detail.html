@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{{ car.make }} {{ car.model }}</title>
+    <style>
+        body{
+            font-family: "Segoe UI", system-ui, sans-serif;
+        }
+        h1{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ car.make }} {{ car.model }}</h1>
+    <p>Year of Production: {{ car.year_of_production }}</p>
+    <p>Price per day: {{ car.price_per_day }}</p>
+    <!-- Add more car details here as needed -->
+    <a href="{% url 'cars_list' %}">Back to Cars List</a>
+</body>
+</html>
