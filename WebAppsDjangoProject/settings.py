@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'CarRental.apps.CarrentalConfig',
     'CarsManagement',
+    'Booking',
 ]
 
 MIDDLEWARE = [

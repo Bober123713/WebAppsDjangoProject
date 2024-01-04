@@ -3,19 +3,70 @@
 <head>
     <title>{{ car.make }} {{ car.model }}</title>
     <style>
-        body{
-            font-family: "Segoe UI", system-ui, sans-serif;
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            color: #333;
         }
-        h1{
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .car-details {
+            background-color: #fff;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .car-title {
+            font-size: 24px;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        .car-attribute {
+            margin: 5px 0;
+            padding: 5px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .back-link {
+            display: block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        h1 {
             text-align: center;
+            color: #333;
         }
     </style>
 </head>
 <body>
-    <h1>{{ car.make }} {{ car.model }}</h1>
-    <p>Year of Production: {{ car.year_of_production }}</p>
-    <p>Price per day: {{ car.price_per_day }}</p>
-    <!-- Add more car details here as needed -->
-    <a href="{% url 'cars_list' %}">Back to Cars List</a>
+    <div class="container">
+        <h1>{{ car.make }} {{ car.model }}</h1>
+        <div class="car-details">
+            <div class="car-attribute">
+                <strong>Year of Production:</strong> {{ car.year_of_production }}
+            </div>
+            <div class="car-attribute">
+                <strong>Price per day:</strong> {{ car.price_per_day }}
+            </div>
+            <!-- Add more car details here as needed -->
+        </div>
+        <a href="{% url 'cars_list' %}" class="back-link">Back to Cars List</a>
+    </div>
 </body>
 </html>

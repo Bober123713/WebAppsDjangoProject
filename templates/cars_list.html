@@ -3,46 +3,98 @@
 <head>
     <title>Cars List</title>
     <style>
-        body{
-            font-family: "Segoe UI", system-ui, sans-serif;
-        }
-        
-        .car-tile-container {
-            display: flex;
-            flex-wrap: wrap;
+        body {
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
+            background-color: #eaeaea;
+            color: #333;
         }
+
+        .header {
+            background-color: #f0f0f0;
+            padding: 20px 0;
+            text-align: center;
+            width: 100%;
+        }
+
+        .header h1 {
+            font-size: 2em;
+            color: #007bff;
+            margin: 0;
+        }
+
+        .car-tile-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            justify-content: center;
+        }
+
         .car-tile {
-            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-            transition: 0.3s;
-            width: 200px;
-            margin: 10px;
-            text-align: center;
-            padding: 10px;
-            list-style-type: none;
-            text-decoration: none; /* Removes underline from links */
-            color: inherit; /* Inherits text color from parent elements */
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            text-decoration: none; /* Ensure links have no underline */
+            color: inherit; /* Inherits text color */
         }
+
         .car-tile:hover {
-            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.3);
-            text-decoration: none;
+            transform: translateY(-5px);
+            text-decoration: none; /* Remove underline on hover */
         }
-        h1{
+
+        .car-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .car-info {
+            padding: 15px;
             text-align: center;
+        }
+
+        .car-info h2 {
+            margin: 10px 0;
+            font-size: 1.25em;
+            color: #007bff;
+        }
+
+        .car-info p {
+            margin: 5px 0;
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        @media (max-width: 600px) {
+            .car-tile-container {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>Cars Available for Rent</h1>
+    <div class="header">
+        <h1>Cars Available for Rent</h1>
+    </div>
     <div class="car-tile-container">
-    {% for car in cars %}
-        <a href="{% url 'car_detail' car.id %}" class="car-tile">
-            <h2>{{ car.make }} {{ car.model }}</h2>
-            <p>Year: {{ car.year_of_production }}</p>
-            <p>Price per day: {{ car.price_per_day }}</p>
-        </a>
-    {% endfor %}
+        {% for car in cars %}
+            <!-- Each car tile is a link to the car's detail page -->
+            <a href="{% url 'car_detail' car.id %}" class="car-tile">
+                <img src="{{ car.image_url }}" alt="{{ car.make }} {{ car.model }}" class="car-image">
+                <div class="car-info">
+                    <h2>{{ car.make }} {{ car.model }}</h2>
+                    <p>Year: {{ car.year_of_production }}</p>
+                    <p>Price per day: {{ car.price_per_day }}</p>
+                </div>
+            </a>
+        {% endfor %}
     </div>
 </body>
 </html>
