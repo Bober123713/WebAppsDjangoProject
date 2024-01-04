@@ -5,7 +5,6 @@ from .models import Car
 
 def create_booking(request, car_id):
     car = get_object_or_404(Car, id=car_id)
-    form = BookingForm()
     if request.method == 'POST':
         form = BookingForm(request.POST)
         if form.is_valid():
@@ -14,5 +13,5 @@ def create_booking(request, car_id):
             booking.save()
             return redirect('some_success_page')  # Redirect as necessary
     else:
-        form = BookingForm()
+        form = BookingForm(initial={'car': car})
     return render(request, 'create_booking.html', {'car': car})

@@ -1,105 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>{{ car.make }} {{ car.model }}</title>
-    <style>
-        body {
-            font-family: "Segoe UI", Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-            color: #333;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: auto;
-            padding: 20px;
-        }
-
-        .car-details {
-            background-color: #fff;
-            padding: 20px;
-            margin-top: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .car-title {
-            font-size: 24px;
-            color: #007bff;
-            margin-bottom: 10px;
-        }
-
-        .car-attribute {
-            margin: 5px 0;
-            padding: 5px 0;
-            border-bottom: 1px solid #eee;
-        }
-
-        .back-link {
-            display: block;
-            margin-top: 20px;
-            text-decoration: none;
-            color: #007bff;
-        }
-
-        .back-link:hover {
-            text-decoration: underline;
-        }
-
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-
-        .booking-button {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #28a745; /* Green background */
-            color: white; /* White text */
-            text-decoration: none; /* No underline */
-            border-radius: 4px; /* Rounded corners */
-            font-weight: bold; /* Bold text */
-        }
-        
-         @media (max-width: 768px) {
-            .container {
-                max-width: 95%;
-                padding: 10px;
-            }
-
-            .car-title {
-                font-size: 20px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .car-title {
-                font-size: 18px;
-            }
-
-            .car-attribute {
-                font-size: 14px;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>{{ car.make }} {{ car.model }}</h1>
-        <div class="car-details">
-            <div class="car-attribute">
-                <strong>Year of Production:</strong> {{ car.year_of_production }}
-            </div>
-            <div class="car-attribute">
-                <strong>Price per day:</strong> {{ car.price_per_day }}
-            </div>
-             <a href="{% url 'create_booking' car.id %}" class="booking-button">Book this Car</a>
-            <!-- Add more car details here as needed -->
-        </div>
-        <a href="{% url 'cars_list' %}" class="back-link">Back to Cars List</a>
+{% extends "base.html" %}
+{% block title %}{{ car.make }} {{ car.model }}{% endblock %}
+<h1>{% block header %}{{ car.make }} {{ car.model }}{% endblock %}</h1>
+{% block content %}
+<div class="car-details">
+    <div class="car-attribute">
+        <strong>Year of Production:</strong> {{ car.year_of_production }}
     </div>
-</body>
-</html>
+    <div class="car-attribute">
+        <strong>Price per day:</strong> {{ car.price_per_day }}
+    </div>
+    <a href="{% url 'create_booking' car.id %}" class="booking-button">Book this Car</a>
+</div>
+<!--<a href="{% url 'cars_list' %}" class="back-link">Back to Cars List</a>-->
+{% endblock %}

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}My Site{% endblock %}</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #eaeaea;
+            color: #333;
+        }
+
+        .header {
+            background-color: #f0f0f0;
+            padding: 20px 0;
+            text-align: center;
+            width: 100%;
+        }
+
+        .header h1 {
+            font-size: 2em;
+            color: #007bff;
+            margin: 0;
+        }
+
+        /* Navigation bar styles */
+        .navbar {
+            background-color: #007bff;
+            overflow: hidden;
+        }
+
+        .navbar a {
+            float: left;
+            display: block;
+            color: #fff;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            background-color: #0056b3;
+        }
+        
+        .car-tile-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            justify-content: center;
+        }
+
+        .car-tile {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            text-decoration: none; /* Ensure links have no underline */
+            color: inherit; /* Inherits text color */
+        }
+
+        .car-tile:hover {
+            transform: translateY(-5px);
+            text-decoration: none; /* Remove underline on hover */
+        }
+
+        .car-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .car-info {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .car-info h2 {
+            margin: 10px 0;
+            font-size: 1.25em;
+            color: #007bff;
+        }
+
+        .car-info p {
+            margin: 5px 0;
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        @media (max-width: 600px) {
+            .car-tile-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .car-details {
+            background-color: #fff;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .car-title {
+            font-size: 24px;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        .car-attribute {
+            margin: 5px 0;
+            padding: 5px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .back-link {
+            display: block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .booking-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #28a745; /* Green background */
+            color: white; /* White text */
+            text-decoration: none; /* No underline */
+            border-radius: 4px; /* Rounded corners */
+            font-weight: bold; /* Bold text */
+        }
+
+         @media (max-width: 768px) {
+            .container {
+                max-width: 95%;
+                padding: 10px;
+            }
+
+            .car-title {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .car-title {
+                font-size: 18px;
+            }
+
+            .car-attribute {
+                font-size: 14px;
+            }
+        }
+        
+        form {
+        display: flex;
+        flex-direction: column;
+        }
+    
+        .form-group {
+            margin-bottom: 15px;
+        }
+    
+        .form-group label {
+            margin-bottom: 5px;
+            display: block;
+        }
+    
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+    
+        .form-group input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+    
+        .form-group input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>{% block header %}My Site Header{% endblock %}</h1>
+    </header>
+
+    <!-- Navigation bar -->
+    <div class="navbar">
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'cars_list' %}">Car List</a>
+        <!-- Add more navigation links here -->
+    </div>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; {% now "Y" %} My Site</p>
+    </footer>
+</body>
+</html>

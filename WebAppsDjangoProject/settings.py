@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'CarRental.apps.CarrentalConfig',
     'CarsManagement',
     'Booking',
+    'Accounts',
+    'main',
 ]
 
 MIDDLEWARE = [
