@@ -20,6 +20,5 @@ from django.urls import include, path
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('cars/', include('CarsManagement.urls')),  # Route for CarsManagement'
-    path('bookings/', include('Booking.urls')),  # Route for BookingApp
     path('booking/', include('Booking.urls')),  # Adjust 'Booking.urls' to your app's name
 ]
