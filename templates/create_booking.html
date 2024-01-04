@@ -59,12 +59,23 @@
             background-color: #0056b3;
         }
     </style>
+    <script>
+        function calculatePrice() {
+            var startDate = new Date(document.getElementById('id_start_date').value);
+            var endDate = new Date(document.getElementById('id_end_date').value);
+            var pricePerDay = {{ car.price_per_day }};
+            var diffTime = Math.abs(endDate - startDate);
+            var diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            var totalPrice = diffDays * pricePerDay;
+            document.getElementById('totalPrice').innerText = 'Total Price: ' + totalPrice;
+        }
+    </script>
 </head>
 <body>
     <div class="container">
         <h2>Book a Car</h2>
-        <form method="post" action="{% url 'create_booking' %}">
-            {% csrf_token %}
+        <form method="post" action="{% url 'create_booking' car.id %}">
+    {% csrf_token %}
             {% for field in form %}
                 <div class="form-group">
                     <label for="{{ field.id_for_label }}">{{ field.label }}</label>
@@ -77,10 +88,15 @@
                     {% endfor %}
                 </div>
             {% endfor %}
+            <p id="totalPrice">Total Price: </p>
             <div class="form-group">
                 <input type="submit" value="Book Now">
             </div>
         </form>
     </div>
+    <script>
+        document.getElementById('id_start_date').addEventListener('change', calculatePrice);
+        document.getElementById('id_end_date').addEventListener('change', calculatePrice);
+    </script>
 </body>
 </html>

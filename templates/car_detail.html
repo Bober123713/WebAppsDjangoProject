@@ -52,6 +52,17 @@
             text-align: center;
             color: #333;
         }
+
+        .booking-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #28a745; /* Green background */
+            color: white; /* White text */
+            text-decoration: none; /* No underline */
+            border-radius: 4px; /* Rounded corners */
+            font-weight: bold; /* Bold text */
+        }
         
          @media (max-width: 768px) {
             .container {
@@ -85,6 +96,7 @@
             <div class="car-attribute">
                 <strong>Price per day:</strong> {{ car.price_per_day }}
             </div>
+             <a href="{% url 'create_booking' car.id %}" class="booking-button">Book this Car</a>
             <!-- Add more car details here as needed -->
         </div>
         <a href="{% url 'cars_list' %}" class="back-link">Back to Cars List</a>
