@@ -14,4 +14,4 @@ def create_booking(request, car_id):
             return redirect('some_success_page')  # Redirect as necessary
     else:
         form = BookingForm(initial={'car': car})
-    return render(request, 'create_booking.html', {'car': car})
+    return render(request, 'create_booking.html', {'car': car, 'form': form})

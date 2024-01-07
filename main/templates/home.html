@@ -1,8 +1,17 @@
 {% extends "base.html" %}
 
+{% block title %}Welcome to Our Car Rental{% endblock %}
+{% block header %}Welcome to Our Car Rental{% endblock %}
+
 {% block content %}
-    <section>
-        <h2>Welcome to Our Website</h2>
-        <p>This is the home page of our website. Feel free to explore!</p>
+<main class="container">
+    <section style="text-align: center;">
+        <h2>Welcome to Our Car Rental Service!</h2>
+        <p>Discover a wide range of cars and book your ride today. Experience the best car rental service with us.</p>
+
+        <div style="margin-top: 2em;">
+            <a href="{% url 'cars_list' %}" class="booking-button">View Cars</a>
+        </div>
     </section>
+</main>
 {% endblock %}
