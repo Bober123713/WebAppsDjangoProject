@@ -29,14 +29,14 @@
 
 <!-- Script for Price Calculation -->
 <script>
-    document.getElementById('id_start_date').addEventListener('change', calculatePrice);
-    document.getElementById('id_end_date').addEventListener('change', calculatePrice);
+    document.getElementById('id_pickup_date').addEventListener('change', calculatePrice);
+    document.getElementById('id_return_date').addEventListener('change', calculatePrice);
 </script>
 
 <!-- Script for Date Fields Logic -->
 <script>
-    var startDateInput = document.querySelector('[name="start_date"]');
-    var endDateInput = document.querySelector('[name="end_date"]');
+    var startDateInput = document.querySelector('[name="pickup_date"]');
+    var endDateInput = document.querySelector('[name="return_date"]');
 
     function updateOrClearEndDate() {
         var startDate = startDateInput.value;
@@ -74,8 +74,8 @@
         }
     }
 
-    var startDateInput = document.querySelector('[name="start_date"]');
-    var endDateInput = document.querySelector('[name="end_date"]');
+    var startDateInput = document.querySelector('[name="pickup_date"]');
+    var endDateInput = document.querySelector('[name="return_date"]');
 
     startDateInput.addEventListener('change', calculatePrice);
     endDateInput.addEventListener('change', calculatePrice);

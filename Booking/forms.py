@@ -6,16 +6,16 @@ from django.utils import timezone
 
 
 class BookingForm(forms.ModelForm):
-    start_date = forms.DateField(widget=DateInput(attrs={'type': 'date', 'min': datetime.date.today()}))
-    end_date = forms.DateField(widget=DateInput(attrs={'type': 'date', 'min': datetime.date.today()}))
+    pickup_date = forms.DateField(widget=DateInput(attrs={'type': 'date', 'min': datetime.date.today()}))
+    return_date = forms.DateField(widget=DateInput(attrs={'type': 'date', 'min': datetime.date.today()}))
 
     class Meta:
         model = Booking
-        fields = ['start_date', 'end_date', 'car']
+        fields = ['pickup_date', 'return_date', 'car']
 
     def clean_start_date(self):
         current_time = timezone.localtime(timezone.now())
-        start_date = self.cleaned_data.get('start_date')
+        start_date = self.cleaned_data.get('pickup_date')
 
         if start_date:
             if current_time.hour >= 0:
@@ -30,8 +30,8 @@ class BookingForm(forms.ModelForm):
 
     def clean(self):
         cleaned_data = super().clean()
-        start_date = cleaned_data.get('start_date')
-        end_date = cleaned_data.get('end_date')
+        start_date = cleaned_data.get('pickup_date')
+        end_date = cleaned_data.get('return_date')
 
         if start_date and end_date:
             if end_date < start_date:
