@@ -14,7 +14,11 @@ def create_booking(request, car_id):
             booking.end_date = form.cleaned_data['return_date']
             booking.car = car
             booking.save()
-            return redirect('some_success_page')  # Redirect as necessary
+            return redirect('create_booking_success')  # Redirect as necessary
     else:
         form = BookingForm(initial={'car': car})
     return render(request, 'create_booking.html', {'car': car, 'form': form})
+
+
+def create_booking_success(request):
+    return render(request, 'create_booking_success.html')
