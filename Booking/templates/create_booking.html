@@ -4,17 +4,27 @@
 {% block content %}
 <div class="container">
     <form method="post" action="{% url 'create_booking' car.id %}">
+        <h3>Rental form</h3>
         {% csrf_token %}
         {% for field in form %}
             <div class="form-group">
-                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-                {{ field }}
-                {% if field.help_text %}
-                    <small style="color: #666;">{{ field.help_text }}</small>
-                {% endif %}
-                {% for error in field.errors %}
-                    <p style="color: red;">{{ error }}</p>
+                 {% if field.name == 'transmission_type' %}
+                <label>{{ field.label }}</label>
+                <div class="horizontal-radio">
+                {% for choice in field %}
+                    <label>{{ choice.tag }} {{ choice.choice_label }}</label>
                 {% endfor %}
+            </div>
+                {% else %}
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {{ field }}
+                    {% if field.help_text %}
+                        <small style="color: #666;">{{ field.help_text }}</small>
+                    {% endif %}
+                    {% for error in field.errors %}
+                        <p style="color: red;">{{ error }}</p>
+                    {% endfor %}
+                {% endif %}
             </div>
         {% endfor %}
         <div class="car-details" data-price-per-day="{{ car.price_per_day }}">

@@ -10,6 +10,9 @@ def create_booking(request, car_id):
         if form.is_valid():
             booking = form.save(commit=False)
             booking.user = request.user  # Set the user
+            booking.start_date = form.cleaned_data['pickup_date']
+            booking.end_date = form.cleaned_data['return_date']
+            booking.car = car
             booking.save()
             return redirect('some_success_page')  # Redirect as necessary
     else:

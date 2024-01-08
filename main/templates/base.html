@@ -164,6 +164,30 @@
             font-weight: bold; /* Bold text */
         }
 
+        .horizontal-radio {
+        display: flex; /* This will align the radio buttons horizontally */
+        align-items: center; /* This will vertically align the radio buttons with the labels */
+        }
+
+        .horizontal-radio label {
+            margin-right: 10px; /* Adds some space between the label and the radio button */
+            font-size: small; /* Adjust the font size as needed */
+        }
+
+        /* Remove width restriction to allow content-based sizing */
+        .horizontal-radio input[type="radio"],
+        .horizontal-radio label {
+            display: inline-flex; /* Use inline-flex for better alignment */
+            vertical-align: middle; /* Aligns the middle of the element with the baseline plus half the x-height of the parent */
+            margin-right: 5px; /* Adjust the right margin as needed */
+            width: auto; /* Let the width be determined by the content */
+        }
+
+        h3{
+            text-align: center;
+            color: #333;
+        }
+
         @media (max-width: 768px) {
             .container {
                 max-width: 95%;
