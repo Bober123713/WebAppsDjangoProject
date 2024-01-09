@@ -16,9 +16,9 @@
         <div class="bookings">
             {% for booking in user.booking_set.all %}
                 <div class="booking">
-                    <h3>Booking: {{ booking.car.make }} {{ booking.car.model }}</h3>
-                    <p>Start Date: {{ booking.start_date }}</p>
-                    <p>End Date: {{ booking.end_date }}</p>
+                    <h3>Booking: {{ booking.car.make }} {{ booking.car.model }} {{ booking.car.year_of_production }}</h3>
+                    <p>Pickup Date: {{ booking.start_date }}</p>
+                    <p>Return Date: {{ booking.end_date }}</p>
                     <p>Transmission Type: {{ booking.transmission_type }}</p>
                     <p>Price: ${{ booking.price }}</p>
                     {% if booking.gps_service %}
