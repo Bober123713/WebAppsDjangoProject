@@ -27,6 +27,7 @@
         <option value="$MODULE_DIR$/Accounts/templates" />
         <option value="$MODULE_DIR$/main/templates" />
         <option value="$MODULE_DIR$/Booking/templates" />
+        <option value="$MODULE_DIR$/CarsManagement/templates" />
       </list>
     </option>
   </component>

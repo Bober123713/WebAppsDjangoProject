@@ -20,6 +20,16 @@
                     <p>End Date: {{ booking.end_date }}</p>
                     <p>Transmission Type: {{ booking.transmission_type }}</p>
                     <p>Price: ${{ booking.price }}</p>
+                    {% if booking.gps_service %}
+                        <p>GPS Service: Yes</p>
+                    {% else %}
+                        <p>GPS Service: No</p>
+                    {% endif %}
+                    {% if booking.additional_requests == ''%}
+                        <p>Additional Requests: None</p>
+                    {% else %}
+                        <p>Additional Requests: {{ booking.additional_requests }}</p>
+                    {% endif %}
                     <!-- Add more booking details here -->
                 </div>
             {% endfor %}
