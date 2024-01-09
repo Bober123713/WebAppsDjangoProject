@@ -1,8 +1,10 @@
 {% extends "base.html" %}
 {% block title %}Book a Car{% endblock %}
-<h1>{% block header %}Book Car{% endblock %}</h1>
+{% block header %}
+    <h1>Book Car</h1>
+{% endblock %}
 {% block content %}
-<div class="container">
+<div class="container-for-booking py-5">
     <form method="post" action="{% url 'create_booking' car.id %}">
         <h3>Rental form</h3>
         {% csrf_token %}

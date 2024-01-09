@@ -23,10 +23,6 @@ body {
 /* Sticky Navbar Styles */
 .navbar {
     background-color: #007bff;
-    overflow: hidden;
-    position: sticky; /* Make the navbar sticky */
-    top: 0; /* Stick to the top of the screen */
-    z-index: 1000; /* Ensure it stays on top of other elements */
 }
 
 /* Mobile-friendly adjustments */
@@ -288,3 +284,60 @@ footer {
     padding: 10px 0;
     width: 100%;
 }
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.profile-info h3, .profile-info h4 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.profile-section {
+    margin-top: 30px;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.profile-section h2 {
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+.bookings {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.booking {
+    background-color: #eaeaea;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.booking h3 {
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+.booking p {
+    color: #666;
+    font-size: 0.9em;
+    margin: 5px 0;
+}
+
+.container-for-booking {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
