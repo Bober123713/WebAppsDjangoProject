@@ -1,10 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-</body>
-</html>
+{% block title %}User Profile{% endblock %}
+{% block header %}User Profile{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="profile-info">
+        <h3>Username: {{ user.username }}</h3>
+        <h4>Email: {{ user.email }}</h4>
+        <!-- Add more user details here -->
+    </div>
+
+    <h2>My Bookings</h2>
+    {% if user.booking_set.all %}
+        <div class="bookings">
+            {% for booking in user.booking_set.all %}
+                <div class="booking">
+                    <h3>Booking: {{ booking.car.make }} {{ booking.car.model }}</h3>
+                    <p>Start Date: {{ booking.start_date }}</p>
+                    <p>End Date: {{ booking.end_date }}</p>
+                    <p>Transmission Type: {{ booking.transmission_type }}</p>
+                    <p>Price: ${{ booking.price }}</p>
+                    <!-- Add more booking details here -->
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>You have no bookings.</p>
+    {% endif %}
+</div>
+{% endblock %}
