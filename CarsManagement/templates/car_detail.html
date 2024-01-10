@@ -16,5 +16,22 @@
     {% endif %}
     
 </div>
+    <div class="comments-section">
+    <h2>Comments</h2>
+        {% if user.is_authenticated %}
+            <form method="post">
+                {% csrf_token %}
+                {{ comment_form.as_p }}
+                <button type="submit">Post Comment</button>
+            </form>
+        {% endif %}
+    {% for comment in comments %}
+        <div class="comment">
+            <p>{{ comment.text }} - <strong>{{ comment.author }}</strong> on {{ comment.created_date }}</p>
+        </div>
+    {% empty %}
+        <p>No comments yet.</p>
+    {% endfor %}
+</div>
 <!--<a href="{% url 'cars_list' %}" class="back-link">Back to Cars List</a>-->
 {% endblock %}

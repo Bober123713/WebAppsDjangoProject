@@ -3,7 +3,6 @@ from django.contrib.staticfiles.storage import staticfiles_storage
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.template.loader import render_to_string
-
 from .forms import BookingForm
 from .models import Car
 
