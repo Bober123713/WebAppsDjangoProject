@@ -1,0 +1,19 @@
+{% autoescape off %}
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="{{ xsl_url }}"?>
+<bookings>
+    {% for booking in user.booking_set.all %}
+    <booking>
+        <carMake>{{ booking.car.make }}</carMake>
+        <carModel>{{ booking.car.model }}</carModel>
+        <carYear>{{ booking.car.year_of_production }}</carYear>
+        <startDate>{{ booking.start_date }}</startDate>
+        <endDate>{{ booking.end_date }}</endDate>
+        <transmissionType>{{ booking.transmission_type }}</transmissionType>
+        <price>{{ booking.price }}</price>
+        <gpsService>{{ booking.gps_service }}</gpsService>
+        <additionalRequests>{{ booking.additional_requests }}</additionalRequests>
+    </booking>
+    {% endfor %}
+</bookings>
+{% endautoescape %}

@@ -5,13 +5,15 @@
 {% block content %}
 <div class="container">
     <div class="profile-info">
-        <h3>Username: {{ user.username }}</h3>
+        <h4>Username: {{ user.username }}</h4>
         <h4>Email: {{ user.email }}</h4>
-        <!-- Add more user details here -->
     </div>
 
     <div class="profile-section">
     <h2>My Bookings</h2>
+    <p>
+        <a href="{% url 'download_bookings' %}" class="booking-button">Download Bookings</a>
+    </p>
     {% if user.booking_set.all %}
         <div class="bookings">
             {% for booking in user.booking_set.all %}

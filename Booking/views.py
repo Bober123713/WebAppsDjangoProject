@@ -1,5 +1,9 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.staticfiles.storage import staticfiles_storage
+from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
+from django.template.loader import render_to_string
+
 from .forms import BookingForm
 from .models import Car
 
@@ -25,3 +29,13 @@ def create_booking(request, car_id):
 
 def create_booking_success(request):
     return render(request, 'create_booking_success.html')
+
+
+@login_required
+def download_bookings(request):
+    xsl_url = staticfiles_storage.url('xsl/booking_template.xsl')
+    xml_content = render_to_string('bookings.xml', {'user': request.user, 'xsl_url': xsl_url})
+    response = HttpResponse(xml_content, content_type='application/xml')
+    response['Content-Disposition'] = 'attachment; filename="bookings.xml"'
+    return response
+

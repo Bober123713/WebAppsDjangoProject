@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.staticfiles.storage import staticfiles_storage
 from django.shortcuts import render, redirect
 from .forms import NewUserForm
 from django.contrib.auth import login, authenticate, logout
@@ -38,9 +39,14 @@ def login_request(request):
     return render(request=request, template_name="login.html", context={"login_form":form})
 
 
+# @login_required
+# def user_profile(request):
+#     return render(request, 'user_profile.html')
+
 @login_required
 def user_profile(request):
-    return render(request, 'user_profile.html')
+    xsl_url = staticfiles_storage.url('xsl/booking_template.xsl')
+    return render(request, 'user_profile.html', {'xsl_url': xsl_url})
 
 
 @login_required
