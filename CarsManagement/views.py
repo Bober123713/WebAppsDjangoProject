@@ -1,7 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from Comments.forms import CommentForm
 from Comments.models import Comment
-from Comments.views import add_comment_to_car
 from .models import Car
 
 
