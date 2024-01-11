@@ -22,6 +22,7 @@ urlpatterns = [
     path('cars/', include('CarsManagement.urls')),  # Route for CarsManagement'
     path('booking/', include('Booking.urls')),  # Adjust 'Booking.urls' to your app's name
     path('', include('main.urls')),
-    path('register/', include('Accounts.urls')),
+    path('accounts/', include('Accounts.urls')),
+
 
 ]
