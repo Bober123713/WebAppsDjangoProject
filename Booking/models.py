@@ -8,7 +8,8 @@ class Booking(models.Model):
     start_date = models.DateField()
     end_date = models.DateField()
     car = models.ForeignKey(Car, on_delete=models.CASCADE)
-    transmission_type = models.CharField(max_length=10, choices=(('Automatic', 'Automatic'), ('Manual', 'Manual')), default='Automatic')
+    transmission_type = models.CharField(max_length=10, choices=(('Automatic', 'Automatic'), ('Manual', 'Manual')),
+                                         default='Automatic')
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=10, decimal_places=2, blank=True)
     gps_service = models.BooleanField(default=False)

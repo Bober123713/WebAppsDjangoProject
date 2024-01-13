@@ -10,7 +10,9 @@ class BookingForm(forms.ModelForm):
     return_date = forms.DateField(widget=DateInput(attrs={'type': 'date', 'min': datetime.date.today()}))
     transmission_type = forms.ChoiceField(choices=Booking.TRANSMISSION_CHOICES, widget=RadioSelect)
     gps_service = forms.BooleanField(required=False, widget=CheckboxInput, label='Add GPS service')
-    additional_requests = forms.CharField(required=False, widget=TextInput(attrs={'placeholder': 'Any additional requests?'}), label='Additional Requests')
+    additional_requests = forms.CharField(required=False,
+                                          widget=TextInput(attrs={'placeholder': 'Any additional requests?'}),
+                                          label='Additional Requests')
 
     class Meta:
         model = Booking
