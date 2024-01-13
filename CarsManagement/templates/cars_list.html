@@ -6,7 +6,9 @@
     {% for car in cars %}
         <!-- Each car tile is a link to the car's detail page -->
         <a href="{% url 'car_detail' car.id %}" class="car-tile">
-            <img src="{{ car.image_url }}" alt="{{ car.make }} {{ car.model }}" class="car-image">
+            {% if car.image %}
+                <img src="{{ car.image.url }}" alt="{{ car.make }} {{ car.model }}" class="car-image">
+            {% endif %}
             <div class="car-info">
                 <h2>{{ car.make }} {{ car.model }}</h2>
                 <p>Year: {{ car.year_of_production }}</p>

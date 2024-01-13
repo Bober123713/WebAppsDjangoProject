@@ -6,3 +6,4 @@ urlpatterns = [
     path('car/<int:car_id>/', views.car_detail, name='car_detail'),
     # Add other URL patterns for this app
 ]
+

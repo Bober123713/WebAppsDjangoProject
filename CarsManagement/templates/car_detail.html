@@ -3,6 +3,11 @@
 <h1>{% block header %}{{ car.make }} {{ car.model }}{% endblock %}</h1>
 {% block content %}
 <div class="car-details">
+    <div class="car-detail-img">
+        {% if car.image %}
+            <img src="{{ car.image.url }}" alt="{{ car.make }} {{ car.model }}" class="car-image">
+        {% endif %}
+    </div>
     <div class="car-attribute">
         <strong>Year of Production:</strong> {{ car.year_of_production }}
     </div>
