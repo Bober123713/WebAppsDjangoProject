@@ -37,4 +37,3 @@ def download_bookings(request):
     response = HttpResponse(xml_content, content_type='application/xml')
     response['Content-Disposition'] = 'attachment; filename="bookings.xml"'
     return response
-

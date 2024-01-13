@@ -2,27 +2,27 @@
 {% block title %}{{ car.make }} {{ car.model }}{% endblock %}
 <h1>{% block header %}{{ car.make }} {{ car.model }}{% endblock %}</h1>
 {% block content %}
-<div class="car-details">
-    <div class="car-detail-img">
-        {% if car.image %}
-            <img src="{{ car.image.url }}" alt="{{ car.make }} {{ car.model }}" class="car-image">
+    <div class="car-details">
+        <div class="car-detail-img">
+            {% if car.image %}
+                <img src="{{ car.image.url }}" alt="{{ car.make }} {{ car.model }}" class="car-image">
+            {% endif %}
+        </div>
+        <div class="car-attribute">
+            <strong>Year of Production:</strong> {{ car.year_of_production }}
+        </div>
+        <div class="car-attribute">
+            <strong>Price per day:</strong> {{ car.price_per_day }}
+        </div>
+        {% if user.is_authenticated %}
+            <a href="{% url 'create_booking' car.id %}" class="booking-button">Book this Car</a>
+        {% else %}
+            <a href="{% url 'login' %}" class="booking-button">Book this Car</a>
         {% endif %}
+
     </div>
-    <div class="car-attribute">
-        <strong>Year of Production:</strong> {{ car.year_of_production }}
-    </div>
-    <div class="car-attribute">
-        <strong>Price per day:</strong> {{ car.price_per_day }}
-    </div>
-    {% if user.is_authenticated %}
-        <a href="{% url 'create_booking' car.id %}" class="booking-button">Book this Car</a>
-    {% else %}
-        <a href="{% url 'login' %}" class="booking-button">Book this Car</a>
-    {% endif %}
-    
-</div>
     <div class="comments-section">
-    <h2>Comments</h2>
+        <h2>Comments</h2>
         {% if user.is_authenticated %}
             <form method="post">
                 {% csrf_token %}
@@ -30,13 +30,13 @@
                 <button type="submit">Post Comment</button>
             </form>
         {% endif %}
-    {% for comment in comments %}
-        <div class="comment">
-            <p>{{ comment.text }} - <strong>{{ comment.author }}</strong> on {{ comment.created_date }}</p>
-        </div>
-    {% empty %}
-        <p>No comments yet.</p>
-    {% endfor %}
-</div>
-<!--<a href="{% url 'cars_list' %}" class="back-link">Back to Cars List</a>-->
+        {% for comment in comments %}
+            <div class="comment">
+                <p>{{ comment.text }} - <strong>{{ comment.author }}</strong> on {{ comment.created_date }}</p>
+            </div>
+        {% empty %}
+            <p>No comments yet.</p>
+        {% endfor %}
+    </div>
+    <!--<a href="{% url 'cars_list' %}" class="back-link">Back to Cars List</a>-->
 {% endblock %}

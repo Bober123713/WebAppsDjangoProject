@@ -5,100 +5,100 @@
     <h2>{{ car.make }} {{ car.model }} {{ car.year_of_production }}</h2>
 {% endblock %}
 {% block content %}
-<div class="container-for-booking py-5">
-    <form method="post" action="{% url 'create_booking' car.id %}">
-        <h3>Rental form</h3>
-        {% csrf_token %}
-        {% for field in form %}
-            <div class="form-group">
-                 {% if field.name == 'transmission_type' %}
-                <label>{{ field.label }}</label>
-                <div class="horizontal-radio">
-                {% for choice in field %}
-                    <label>{{ choice.tag }} {{ choice.choice_label }}</label>
-                {% endfor %}
-            </div>
-                {% else %}
-                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-                    {{ field }}
-                    {% if field.help_text %}
-                        <small style="color: #666;">{{ field.help_text }}</small>
+    <div class="container-for-booking py-5">
+        <form method="post" action="{% url 'create_booking' car.id %}">
+            <h3>Rental form</h3>
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="form-group">
+                    {% if field.name == 'transmission_type' %}
+                        <label>{{ field.label }}</label>
+                        <div class="horizontal-radio">
+                            {% for choice in field %}
+                                <label>{{ choice.tag }} {{ choice.choice_label }}</label>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        {{ field }}
+                        {% if field.help_text %}
+                            <small style="color: #666;">{{ field.help_text }}</small>
+                        {% endif %}
+                        {% for error in field.errors %}
+                            <p style="color: red;">{{ error }}</p>
+                        {% endfor %}
                     {% endif %}
-                    {% for error in field.errors %}
-                        <p style="color: red;">{{ error }}</p>
-                    {% endfor %}
-                {% endif %}
+                </div>
+            {% endfor %}
+            <div class="car-details" data-price-per-day="{{ car.price_per_day }}">
+                <p>Price per day: ${{ car.price_per_day }}</p>
+                <p id="totalPrice">Total Price: </p>
             </div>
-        {% endfor %}
-        <div class="car-details" data-price-per-day="{{ car.price_per_day }}">
-            <p>Price per day: ${{ car.price_per_day }}</p>
-            <p id="totalPrice">Total Price: </p>
-        </div>
-        <!-- Details Box for Pickup and Return Place -->
-        <div class="details-box">
-            <h3>Pickup & Return Information</h3>
-            <p><strong>Address: </strong><a
-                    href="https://www.google.pl/maps/place/plac+Politechniki+1,+00-661+Warszawa/@52.2205273,21.0079837,17z/data=!3m1!4b1!4m6!3m5!1s0x471ecce948b6cb17:0x153b75bc0ab4c489!8m2!3d52.220524!4d21.010564!16s%2Fg%2F11c25trhtf?entry=ttu">
-                Plac Politechniki 1, 00-661, Warszawa</a></p>
-            <!-- Add any other relevant details here -->
-        </div>
-        <div class="form-group">
-            <input type="submit" value="Book Now">
-        </div>
-    </form>
-</div>
+            <!-- Details Box for Pickup and Return Place -->
+            <div class="details-box">
+                <h3>Pickup & Return Information</h3>
+                <p><strong>Address: </strong><a
+                        href="https://www.google.pl/maps/place/plac+Politechniki+1,+00-661+Warszawa/@52.2205273,21.0079837,17z/data=!3m1!4b1!4m6!3m5!1s0x471ecce948b6cb17:0x153b75bc0ab4c489!8m2!3d52.220524!4d21.010564!16s%2Fg%2F11c25trhtf?entry=ttu">
+                    Plac Politechniki 1, 00-661, Warszawa</a></p>
+                <!-- Add any other relevant details here -->
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Book Now">
+            </div>
+        </form>
+    </div>
 
-<!-- Script for Price Calculation -->
-<script>
-    document.getElementById('id_pickup_date').addEventListener('change', calculatePrice);
-    document.getElementById('id_return_date').addEventListener('change', calculatePrice);
-</script>
+    <!-- Script for Price Calculation -->
+    <script>
+        document.getElementById('id_pickup_date').addEventListener('change', calculatePrice);
+        document.getElementById('id_return_date').addEventListener('change', calculatePrice);
+    </script>
 
-<!-- Script for Date Fields Logic -->
-<script>
-    var startDateInput = document.querySelector('[name="pickup_date"]');
-    var endDateInput = document.querySelector('[name="return_date"]');
+    <!-- Script for Date Fields Logic -->
+    <script>
+        var startDateInput = document.querySelector('[name="pickup_date"]');
+        var endDateInput = document.querySelector('[name="return_date"]');
 
-    function updateOrClearEndDate() {
-        var startDate = startDateInput.value;
-        var endDate = endDateInput.value;
+        function updateOrClearEndDate() {
+            var startDate = startDateInput.value;
+            var endDate = endDateInput.value;
 
-        endDateInput.setAttribute('min', startDate);
+            endDateInput.setAttribute('min', startDate);
 
-        if (startDate > endDate) {
-            endDateInput.value = '';
+            if (startDate > endDate) {
+                endDateInput.value = '';
+            }
         }
-    }
 
-    startDateInput.addEventListener('change', updateOrClearEndDate);
-    endDateInput.addEventListener('change', updateOrClearEndDate);
+        startDateInput.addEventListener('change', updateOrClearEndDate);
+        endDateInput.addEventListener('change', updateOrClearEndDate);
 
-    updateOrClearEndDate(); // Initial call to set up the form when the page loads
-</script>
+        updateOrClearEndDate(); // Initial call to set up the form when the page loads
+    </script>
 
 
     <script>
-    var carDetailsElement = document.querySelector('.car-details');
-    var pricePerDay = parseFloat(carDetailsElement.dataset.pricePerDay);
+        var carDetailsElement = document.querySelector('.car-details');
+        var pricePerDay = parseFloat(carDetailsElement.dataset.pricePerDay);
 
-    function calculatePrice() {
-        var startDate = new Date(startDateInput.value);
-        var endDate = new Date(endDateInput.value);
-        var timeDiff = endDate - startDate;
-        var days = Math.ceil(timeDiff / (1000 * 3600 * 24));
+        function calculatePrice() {
+            var startDate = new Date(startDateInput.value);
+            var endDate = new Date(endDateInput.value);
+            var timeDiff = endDate - startDate;
+            var days = Math.ceil(timeDiff / (1000 * 3600 * 24));
 
-        if (days > 0) {
-            var totalPrice = days * pricePerDay;
-            document.getElementById('totalPrice').textContent = 'Total Price: $' + totalPrice.toFixed(2);
-        } else {
-            document.getElementById('totalPrice').textContent = 'Total Price: ';
+            if (days > 0) {
+                var totalPrice = days * pricePerDay;
+                document.getElementById('totalPrice').textContent = 'Total Price: $' + totalPrice.toFixed(2);
+            } else {
+                document.getElementById('totalPrice').textContent = 'Total Price: ';
+            }
         }
-    }
 
-    var startDateInput = document.querySelector('[name="pickup_date"]');
-    var endDateInput = document.querySelector('[name="return_date"]');
+        var startDateInput = document.querySelector('[name="pickup_date"]');
+        var endDateInput = document.querySelector('[name="return_date"]');
 
-    startDateInput.addEventListener('change', calculatePrice);
-    endDateInput.addEventListener('change', calculatePrice);
-</script>
+        startDateInput.addEventListener('change', calculatePrice);
+        endDateInput.addEventListener('change', calculatePrice);
+    </script>
 {% endblock %}

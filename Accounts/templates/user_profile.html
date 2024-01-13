@@ -3,43 +3,44 @@
 {% block title %}User Profile{% endblock %}
 {% block header %}Your Profile{% endblock %}
 {% block content %}
-<div class="container">
-    <div class="profile-info">
-        <h4>Username: {{ user.username }}</h4>
-        <h4>Email: {{ user.email }}</h4>
-    </div>
-
-    <div class="profile-section">
-    <h2>My Bookings</h2>
-    <p>
-        <a href="{% url 'download_bookings' %}" class="booking-button">Download Bookings</a>
-    </p>
-    {% if user.booking_set.all %}
-        <div class="bookings">
-            {% for booking in user.booking_set.all %}
-                <div class="booking">
-                    <h3>Booking: {{ booking.car.make }} {{ booking.car.model }} {{ booking.car.year_of_production }}</h3>
-                    <p>Pickup Date: {{ booking.start_date }}</p>
-                    <p>Return Date: {{ booking.end_date }}</p>
-                    <p>Transmission Type: {{ booking.transmission_type }}</p>
-                    <p>Price: ${{ booking.price }}</p>
-                    {% if booking.gps_service %}
-                        <p>GPS Service: Yes</p>
-                    {% else %}
-                        <p>GPS Service: No</p>
-                    {% endif %}
-                    {% if booking.additional_requests == ''%}
-                        <p>Additional Requests: None</p>
-                    {% else %}
-                        <p>Additional Requests: {{ booking.additional_requests }}</p>
-                    {% endif %}
-                    <!-- Add more booking details here -->
-                </div>
-            {% endfor %}
+    <div class="container">
+        <div class="profile-info">
+            <h4>Username: {{ user.username }}</h4>
+            <h4>Email: {{ user.email }}</h4>
         </div>
-    {% else %}
-        <p>You have no bookings.</p>
-    {% endif %}
+
+        <div class="profile-section">
+            <h2>My Bookings</h2>
+            <p>
+                <a href="{% url 'download_bookings' %}" class="booking-button">Download Bookings</a>
+            </p>
+            {% if user.booking_set.all %}
+                <div class="bookings">
+                    {% for booking in user.booking_set.all %}
+                        <div class="booking">
+                            <h3>
+                                Booking: {{ booking.car.make }} {{ booking.car.model }} {{ booking.car.year_of_production }}</h3>
+                            <p>Pickup Date: {{ booking.start_date }}</p>
+                            <p>Return Date: {{ booking.end_date }}</p>
+                            <p>Transmission Type: {{ booking.transmission_type }}</p>
+                            <p>Price: ${{ booking.price }}</p>
+                            {% if booking.gps_service %}
+                                <p>GPS Service: Yes</p>
+                            {% else %}
+                                <p>GPS Service: No</p>
+                            {% endif %}
+                            {% if booking.additional_requests == '' %}
+                                <p>Additional Requests: None</p>
+                            {% else %}
+                                <p>Additional Requests: {{ booking.additional_requests }}</p>
+                            {% endif %}
+                            <!-- Add more booking details here -->
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p>You have no bookings.</p>
+            {% endif %}
+        </div>
     </div>
-</div>
 {% endblock %}

@@ -5,17 +5,18 @@
 {% block header %}Welcome to Our Car Rental{% endblock %}
 
 {% block content %}
-<main class="container">
-    <section style="text-align: center;">
-        <h2>Welcome to Our Car Rental Service!</h2>
-        <p>Discover a wide range of cars and book your ride today. Experience the best car rental service with us.</p>
+    <main class="container">
+        <section style="text-align: center;">
+            <h2>Welcome to Our Car Rental Service!</h2>
+            <p>Discover a wide range of cars and book your ride today. Experience the best car rental service with
+                us.</p>
 
-        <div style="margin-top: 2em;">
-            <a href="{% url 'cars_list' %}" class="booking-button">View Cars</a>
-        </div>
-        <!--<div style="margin-top: 2em;">
+            <div style="margin-top: 2em;">
+                <a href="{% url 'cars_list' %}" class="booking-button">View Cars</a>
+            </div>
+            <!--<div style="margin-top: 2em;">
             <img src="{% static 'carRentalImage.png' %}" alt="Car Rental Service" style="max-width: 100%; height: auto;">
         </div>-->
-    </section>
-</main>
+        </section>
+    </main>
 {% endblock %}
