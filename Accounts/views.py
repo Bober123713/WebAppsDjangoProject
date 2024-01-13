@@ -19,7 +19,7 @@ def register_request(request):
         form = NewUserForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
-            user.is_active = False  # User will not be active until they verify their email
+            user.is_active = False
             user.save()
 
             current_site = get_current_site(request)
@@ -53,7 +53,7 @@ def activate(request, uidb64, token):
         user.is_active = True
         user.save()
         login(request, user)
-        valid_link = True  # Set to True if the link is valid
+        valid_link = True
     else:
         valid_link = False
 
