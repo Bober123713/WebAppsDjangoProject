@@ -1,0 +1,16 @@
+version: '3.10'
+
+services:
+  django:
+    build: .
+    volumes:
+      - ./WebAppsDjangoProject:/code
+      - media_volume:/code/media
+      - static_volume:/code/static
+    ports:
+      - "8000:8000"
+    restart: always
+
+volumes:
+   media_volume:    # Define the named volume for media
+   static_volume:
